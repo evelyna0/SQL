@@ -1,0 +1,58 @@
+#This project allowed me to be creative by constructing several tables about famous people.
+
+CREATE TABLE person (
+    persons_id INTEGER PRIMARY KEY,
+    name TEXT,
+    age INTEGER,
+    birthdate_month TEXT
+);
+    
+INSERT INTO person (name, age, birthdate_month) 
+VALUES
+    ('Beyonce', 42, 'September'),
+    ('Emma Watson', 33, 'April'),
+    ('Zendaya', 27, 'September'),
+    ('Gigi Hadid', 28, 'April'),
+    ('Lady Gaga', 37, 'March'); 
+
+CREATE TABLE careers (
+    career_id INTEGER PRIMARY KEY, 
+    persons_id INTEGER, 
+    career_name TEXT 
+); 
+
+INSERT INTO careers (persons_id, career_name)
+VALUES 
+    (1, 'Singing'), 
+    (2, 'Acting'),
+    (3, 'Acting'),
+    (4, 'Modeling'),
+    (5, 'Singing'); 
+
+CREATE TABLE awards (
+    awards_id INTEGER PRIMARY KEY, 
+    persons_id INTEGER, 
+    number_of_awards INTEGER 
+); 
+
+INSERT INTO awards (persons_id, number_of_awards) 
+VALUES 
+    (2, 26), 
+    (5, 97),
+    (4, 2),
+    (1,32),
+    (3,34); 
+
+#Write a query to show the celebrity's name next to their career 
+SELECT name,  career_name
+FROM person 
+JOIN careers 
+ON person.persons_id= careers.persons_id; 
+
+#Write a query to show the celebritiy's name, career, and awards they have won.  
+SELECT name, career_name, number_of_awards,
+FROM person
+JOIN careers
+ON person.persons_id= careers.persons_id
+JOIN awards
+ON person.persons_id=  awards.persons_id; 
